@@ -22,4 +22,15 @@ func main() {
 	//1 2, 6 24 120
 	fmt.Println(demo.JS(5))
 
+	var str = []rune("雨醉风尘hello")
+	for _, value := range str {
+		fmt.Println(string(value))
+	}
+
+	demo.GetSum()
+	fmt.Println("_----------------------")
+
+	fmt.Println('1')
+	fmt.Println('0')
+
 }
