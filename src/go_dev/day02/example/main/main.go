@@ -17,7 +17,6 @@ func main() {
 		str := demo.IsSushu(i)
 		fmt.Println(str)
 	}
-
 	demo.GetFlowers()
 	//1 2, 6 24 120
 	fmt.Println(demo.JS(5))
