@@ -28,4 +28,14 @@ func main() {
 
 	arr := []int{11, 2, 23, 8, 31}
 	demo_04.Bubble(arr)
+	fmt.Println("--------------------------")
+
+	s1 := make([]int, 10)
+	s1 = []int{1, 2, 3, 4, 5, 6, 6, 7}
+	fmt.Println(s1)
+
+	s2 := s1[:len(s1)]
+	fmt.Println(s2)
+
+	demo_04.TestSlice()
 }
