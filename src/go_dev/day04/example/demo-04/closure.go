@@ -13,6 +13,7 @@ func Adder() func(a int) int {
 	}
 }
 
+//
 func MakeSuffix(suffix string) func(name string) string {
 	suffix = "." + suffix
 	return func(name string) string {
