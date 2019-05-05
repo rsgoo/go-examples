@@ -1,4 +1,8 @@
+
 package main
+
+//原文链接
+//https://learnku.com/golang/t/24598
 
 import (
 	"github.com/gin-gonic/gin"
