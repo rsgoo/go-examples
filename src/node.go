@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"runtime"
+)
 
 func add(a, b int, pipe chan int) {
 	sum := a + b
@@ -13,4 +16,5 @@ func main() {
 	go add(11, 22, pipe)
 	sum := <-pipe
 	fmt.Println("sum from pipe is ", sum)
+	fmt.Println(runtime.GOMAXPROCS(runtime.NumCPU()))
 }
