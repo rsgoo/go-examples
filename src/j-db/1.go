@@ -20,7 +20,7 @@ func HandleSQLError(err error, when string) {
 type Person struct {
 	Name  string  `db:"name"`
 	Age   int     `db:"age"`
-	Money float64 `db:"rmd"`
+	Money float64 `db:"rmb"`
 }
 
 func main() {
@@ -46,7 +46,7 @@ func Create() {
 	fmt.Println(result.LastInsertId())
 }
 
-func Delete()  {
+func Delete() {
 	db, err := sqlx.Open("mysql", "root:11019@tcp(localhost:3306)/mydb")
 	HandleSQLError(err, "sqlx.Open")
 	if err != nil {
@@ -61,7 +61,7 @@ func Delete()  {
 	fmt.Println(result.RowsAffected())
 }
 
-func Update()  {
+func Update() {
 	db, err := sqlx.Open("mysql", "root:11019@tcp(localhost:3306)/mydb")
 	HandleSQLError(err, "sqlx.Open")
 	if err != nil {
@@ -76,18 +76,20 @@ func Update()  {
 	fmt.Println(result.RowsAffected())
 }
 
-func Select()  {
+func Select() {
 	db, err := sqlx.Open("mysql", "root:11019@tcp(localhost:3306)/mydb")
 	HandleSQLError(err, "sqlx.Open")
 	if err != nil {
 		HandleSQLError(err, "sqlx.Open")
 	}
 
-	//people := []Person{}
-	result, err := db.Exec("SELECT * FROM  person")
+	people := []Person{}
+	err = db.Select(&people, "SELECT name,age,rmb FROM  person")
 	if err != nil {
 		HandleSQLError(err, "db.Exec")
 	}
 
-	fmt.Println(result)
+	for _, item := range people {
+		fmt.Println(item)
+	}
 }
