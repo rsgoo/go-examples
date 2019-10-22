@@ -27,7 +27,8 @@ func main() {
 	//Create()
 	//Delete()
 	//Update()
-	Select()
+	//Select()
+	DBTrans()
 }
 
 func Create() {
@@ -92,4 +93,28 @@ func Select() {
 	for _, item := range people {
 		fmt.Println(item)
 	}
+}
+
+func DBTrans() {
+	db, err := sqlx.Open("mysql", "root:11019@tcp(localhost:3306)/mydb")
+	HandleSQLError(err, "sqlx.Open")
+	if err != nil {
+		HandleSQLError(err, "sqlx.Open")
+	}
+
+	dbtrans, _ := db.Begin()
+
+	result1, err1 := db.Exec("insert into person(name, age,rmb,gender,birthday) values (?,?,?,?,?)", "rust", 12, 28000, true, "1999")
+	result2, err2 := db.Exec("update person set age = ? where id>6", 28)
+
+	if err1 != nil || err2 != nil {
+		fmt.Println(err1)
+		fmt.Println(err2)
+		dbtrans.Rollback()
+	} else {
+		dbtrans.Commit()
+		fmt.Println(result1.RowsAffected())
+		fmt.Println(result2.RowsAffected())
+	}
+
 }
