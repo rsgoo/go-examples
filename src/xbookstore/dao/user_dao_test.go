@@ -20,7 +20,17 @@ func TestBook(t *testing.T) {
 	//t.Run("测试图书修改", testUpdateBookById)
 	//t.Run("测试图书获取", testGetPageBooks)
 	//t.Run("测试session新增", testAddSession)
-	t.Run("测试session删除", testDelSession)
+	//t.Run("测试session删除", testDelSession)
+	t.Run("测试session获取", testGetSession)
+}
+
+func testGetSession(t *testing.T) {
+	session, err := GetSession("01635090-a1f2-4139-5dba-0936e4437a6d")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(session)
+	}
 }
 
 func testAddSession(t *testing.T) {

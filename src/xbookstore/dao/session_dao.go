@@ -29,3 +29,13 @@ func DelSession(sessID string) error {
 
 	return nil
 }
+
+//获取session
+func GetSession(sessID string) (*model.Session, error) {
+	sqlStr := "select session_id, user_id, username from sessions where session_id = ?"
+	row := utils.DB.QueryRow(sqlStr, sessID)
+
+	var session = &model.Session{}
+	row.Scan(&session.SessionID, &session.UserID, &session.UserName)
+	return session, nil
+}
