@@ -81,6 +81,7 @@ func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
 
 	//获取cookie
 	//获取指定的cookie
+	/*
 	cookie, _ := r.Cookie("user")
 	if cookie != nil {
 		cookieValue := cookie.Value
@@ -89,6 +90,13 @@ func GetPageBooksByPrice(w http.ResponseWriter, r *http.Request) {
 			pageBook.IsLogin = true
 			pageBook.Username = session.UserName
 		}
+	}
+	*/
+
+	flag, session := dao.IsLogin(r)
+	if flag {
+		pageBook.IsLogin = true
+		pageBook.Username = session.UserName
 	}
 
 	//books, _ := dao.GetBooks()

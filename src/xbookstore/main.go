@@ -40,6 +40,9 @@ func main() {
 	//登录
 	http.HandleFunc("/login", controller.Login)
 
+	//去注销
+	http.HandleFunc("/logout", controller.Logout)
+
 	//注册
 	http.HandleFunc("/register", controller.Register)
 
