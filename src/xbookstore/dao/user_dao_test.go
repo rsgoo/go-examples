@@ -23,7 +23,22 @@ func TestBook(t *testing.T) {
 	//t.Run("测试session删除", testDelSession)
 	//t.Run("测试session获取", testGetSession)
 	//t.Run("测试添加购物车", testAddCart)
-	t.Run("测试获取购物项详情", testGetCartItemByBookIDAndCartID)
+	//t.Run("测试获取购物项详情", testGetCartItemByBookIDAndCartID)
+	t.Run("测试获取购物车详情", testGetCartByUserID)
+}
+
+func testGetCartByUserID(t *testing.T) {
+	cart, err := GetCartByUserID(1)
+	if err != nil {
+		fmt.Println("err is:", err)
+	} else {
+		fmt.Println(cart.CartID)
+		fmt.Println(cart.TotalAmount)
+		fmt.Println(cart.TotalCount)
+		for _, value := range cart.CartItems {
+			fmt.Println(*value.Book)
+		}
+	}
 }
 
 func testGetCartItemByBookIDAndCartID(t *testing.T) {

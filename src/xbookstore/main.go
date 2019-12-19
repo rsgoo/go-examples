@@ -67,5 +67,8 @@ func main() {
 	//删除图书
 	http.HandleFunc("/deleteBook", controller.DeleteBook)
 
+	//添加图书到购物车
+	http.HandleFunc("/addBook2Cart",controller.AddBook2Cart)
+
 	http.ListenAndServe(":8080", nil)
 }

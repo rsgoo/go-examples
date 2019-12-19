@@ -12,9 +12,9 @@
                 //获取要添加的图书的id
                 let bookId = $(this).attr("id");
                 //设置请求的url
-                let url = "/addBook2Cart"
+                let url = "/addBook2Cart";
                 //设置请求参数
-                let param = {"bookId": bookId}
+                let param = {"bookId": bookId};
                 //发送Ajax请求
                 $.post(url, param, function (res) {
                     if (res === "请先登录！") {
