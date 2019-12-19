@@ -21,7 +21,74 @@ func TestBook(t *testing.T) {
 	//t.Run("测试图书获取", testGetPageBooks)
 	//t.Run("测试session新增", testAddSession)
 	//t.Run("测试session删除", testDelSession)
-	t.Run("测试session获取", testGetSession)
+	//t.Run("测试session获取", testGetSession)
+	//t.Run("测试添加购物车", testAddCart)
+	t.Run("测试获取购物项详情", testGetCartItemByBookIDAndCartID)
+}
+
+func testGetCartItemByBookIDAndCartID(t *testing.T) {
+	//cartItem, err := GetCartItemByBookIDAndCartID(string(1), string(66668888))
+	cartItem, err := GetCartItemByBookIDAndCartID("1", "66668888")
+	if err != nil {
+		fmt.Println("err is：", err)
+	} else {
+		fmt.Println(cartItem)
+	}
+
+	fmt.Println(cartItem.CartItemId)
+	fmt.Println(cartItem.Count)
+	fmt.Println(cartItem.Amount)
+	fmt.Println(cartItem.CartID)
+	fmt.Println(*cartItem.Book)
+	fmt.Println(cartItem.Ctime)
+	fmt.Println(cartItem.Mtime)
+}
+
+func testGetCartItemsByCartID(t *testing.T) {
+
+}
+
+func testAddCart(t *testing.T) {
+	//设置要买的第一本书
+	book := &model.Book{
+		ID:    1,
+		Price: 27.20,
+	}
+	//设置要买的第二本书
+	book2 := &model.Book{
+		ID:    2,
+		Price: 23.00,
+	}
+	//创建一个购物项切片
+	var cartItems []*model.CartItem
+	//创建两个购物项
+	cartItem := &model.CartItem{
+		Book:   book,
+		Count:  10,
+		CartID: "66668888",
+	}
+	cartItems = append(cartItems, cartItem)
+	cartItem2 := &model.CartItem{
+		Book:   book2,
+		Count:  10,
+		CartID: "66668888",
+	}
+	cartItems = append(cartItems, cartItem2)
+
+	//创建购物车
+	cart := &model.Cart{
+		CartID:    "66668888",
+		CartItems: cartItems,
+		UserID:    1,
+	}
+	//将购物车插入到数据库中
+	err := AddCart(cart)
+	if err != nil {
+		fmt.Println("err:", err)
+	} else {
+		fmt.Println("添加成功")
+	}
+
 }
 
 func testGetSession(t *testing.T) {

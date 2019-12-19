@@ -183,3 +183,17 @@ func GetPageBooksByPrice(pageNo string, minPrice, maxPrice string) (*model.Page,
 
 	return page, nil
 }
+
+
+//GetBookByID 根据图书的id从数据库中查询出一本图书
+func GetBookByID(bookID string) (*model.Book, error) {
+	//写sql语句
+	sqlStr := "select id,title,author,price,sales,stock,img_path from books where id = ?"
+	//执行
+	row := utils.DB.QueryRow(sqlStr, bookID)
+	//创建Book
+	book := &model.Book{}
+	//为book中的字段赋值
+	row.Scan(&book.ID, &book.Title, &book.Author, &book.Price, &book.Sales, &book.Stock, &book.ImgPath)
+	return book, nil
+}
