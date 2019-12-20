@@ -24,7 +24,12 @@ func TestBook(t *testing.T) {
 	//t.Run("测试session获取", testGetSession)
 	//t.Run("测试添加购物车", testAddCart)
 	//t.Run("测试获取购物项详情", testGetCartItemByBookIDAndCartID)
-	t.Run("测试获取购物车详情", testGetCartByUserID)
+	//t.Run("测试获取购物车详情", testGetCartByUserID)
+	t.Run("测试获取购物车详情", testUpdateBookCount)
+}
+
+func testUpdateBookCount(t *testing.T) {
+
 }
 
 func testGetCartByUserID(t *testing.T) {

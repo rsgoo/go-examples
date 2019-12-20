@@ -16,7 +16,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	//http.HandleFunc("/main", IndexHandler)
-	http.HandleFunc("/main", controller.Index)
+	http.HandleFunc("/main", controller.GetPageBooksByPrice)
 
 	//目录结构
 	//--xbookstore
