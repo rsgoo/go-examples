@@ -14,23 +14,23 @@
             //给删除购物项的超链接绑定单击事件
             $(".deleteCartItem").click(function () {
                 //获取图书的名称
-                var title = $(this).attr("id");
+                let title = $(this).attr("id");
                 return confirm("确定要删除【" + title + "】这本图书吗？");
             });
             //给输入购物项数量的input绑定change事件
             $(".updateCartItem").change(function () {
                 //获取购物项的id
-                var cartItemId = $(this).attr("id");
+                let cartItemId = $(this).attr("id");
                 //获取用户输入的图书的数量
-                var bookCount = $(this).val();
+                let bookCount = $(this).val();
                 //发送请求
                 // location = "/updateCartItem?cartItemId="+cartItemId+"&bookCount="+bookCount;
                 //设置请求的url
-                var url = "/updateCartItem";
+                let url = "/updateCartItem";
                 //设置请求参数
-                var params = {"cartItemId": cartItemId, "bookCount": bookCount};
+                let params = {"cartItemId": cartItemId, "bookCount": bookCount};
                 //获取显示购物项中的金额小计的td元素
-                var $tdEle = $(this).parent().next().next();
+                let $tdEle = $(this).parent().next().next();
                 //发送Ajax请求
                 $.post(url, params, function (res) {
                     //设置总数量
@@ -69,7 +69,24 @@
 
 <div id="main">
 
+<!--.表示t.execute过来的数据-->
     {{if .Cart}}
+        <p>{{.}}</p>
+        <p>{{.SessionID}}</p>
+        <p>{{.UserName}}</p>
+        <p>{{.UserID}}</p>
+        <p>{{.Cart}}</p>
+        <p>{{.Cart.TotalCount}}</p>
+        <p>{{.Cart.TotalAmount}}</p>
+            {{range .Cart.CartItems}}
+                {{.CartItemId}}
+                {{.Count}}
+                {{.Amount}}
+                {{.CartID}}
+                {{.Book}}
+                {{.Book.Title}}
+                <hr>
+            {{end}}
         <table>
             <tr>
                 <td>商品名称</td>
@@ -82,13 +99,13 @@
                 <tr>
                     <td>{{.Book.Title}}</td>
                     <td>
-                        <input id="{{.CartItemID}}" class="updateCartItem" type="number" min="1" value="{{.Count}}"
-                               style="text-align:center;width: 50px;"/>
+                        <input id="{{.CartItemId}}" class="updateCartItem" type="number" min="1" value="{{.Count}}"  style="text-align:center;width: 50px;" />
                     </td>
                     <td>{{.Book.Price}}</td>
                     <td>{{.Amount}}</td>
-                    <td><a id="{{.Book.Title}}" class="deleteCartItem"
-                           href="/deleteCartItem?cartItemId={{.CartItemID}}">删除</a></td>
+                    <td>
+                        <a id="{{.Book.Title}}" class="deleteCartItem" href="/deleteCartItem?cartItemId={{.CartItemId}}" >删除</a>
+                    </td>
                 </tr>
             {{end}}
         </table>

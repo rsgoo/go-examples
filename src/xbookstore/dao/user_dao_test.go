@@ -25,15 +25,32 @@ func TestBook(t *testing.T) {
 	//t.Run("测试添加购物车", testAddCart)
 	//t.Run("测试获取购物项详情", testGetCartItemByBookIDAndCartID)
 	//t.Run("测试获取购物车详情", testGetCartByUserID)
-	t.Run("测试获取购物车详情", testUpdateBookCount)
+	//t.Run("测试获取购物车详情", testUpdateBookCount)
+	//t.Run("测试获取购物车详情", testGetCartByUserID)
+	//t.Run("测试删除购物车", testDeleteCartByCartID)
+	t.Run("测试删除购物车中的购物项", testDeleteCartItemByID)
 }
 
-func testUpdateBookCount(t *testing.T) {
+func testDeleteCartItemByID(t *testing.T) {
+	err := DeleteCartItemByID("10")
+	if err != nil {
+		fmt.Println("err is:", err)
+	} else {
+		fmt.Println("删除成功")
+	}
+}
 
+func testDeleteCartByCartID(t *testing.T) {
+	err := DeleteCartByCartID("cab1f225-d9f1-4a4f-56a3-f8c7faa7f7c7")
+	if err != nil {
+		fmt.Println("err is:", err)
+	} else {
+		fmt.Println("删除成功")
+	}
 }
 
 func testGetCartByUserID(t *testing.T) {
-	cart, err := GetCartByUserID(1)
+	cart, err := GetCartByUserID(3)
 	if err != nil {
 		fmt.Println("err is:", err)
 	} else {
