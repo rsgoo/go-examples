@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"xbookstore/model"
 	"strconv"
+	"time"
 )
 
 func TestMain(m *testing.M) {
@@ -28,7 +29,94 @@ func TestBook(t *testing.T) {
 	//t.Run("测试获取购物车详情", testUpdateBookCount)
 	//t.Run("测试获取购物车详情", testGetCartByUserID)
 	//t.Run("测试删除购物车", testDeleteCartByCartID)
-	t.Run("测试删除购物车中的购物项", testDeleteCartItemByID)
+	//t.Run("测试删除购物车中的购物项", testDeleteCartItemByID)
+	//t.Run("测试添加订单", testAddOrder)
+	//t.Run("测试获取订单", testGetOrders)
+	//t.Run("测试获取订单", testGetOrderItemsByOrderId)
+	//t.Run("测试获取订单", testGetOrderItemsByOrderId)
+	//t.Run("测试获取订单", testGetMyOrders)
+	t.Run("测试订单状态更新", testUpdateOrderState)
+}
+
+func testUpdateOrderState(t *testing.T) {
+	err := UpdateOrderState("99b043b6-f973-4baf-4617-0fee9198d971", 0)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("更新成功")
+	}
+}
+
+func testGetMyOrders(t *testing.T) {
+	orders, err := GetMyOrders(2)
+	if err != nil {
+		fmt.Println("err")
+	} else {
+		for _, value := range orders {
+			fmt.Println(value)
+		}
+	}
+}
+
+func testGetOrderItemsByOrderId(t *testing.T) {
+	orders, err := GetOrderItemsByOrderId("99b043b6-f973-4baf-4617-0fee9198d971")
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		for _, value := range orders {
+			fmt.Println(value)
+		}
+	}
+}
+
+func testGetOrders(t *testing.T) {
+	orders, err := GetOrders()
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		for _, order := range orders {
+			fmt.Println(*order)
+		}
+	}
+}
+
+func testAddOrder(t *testing.T) {
+	//生成订单号
+	orderID := "88888888"
+	//创建订单
+	order := &model.Order{
+		OrderID:     orderID,
+		CreateTime:  time.Now().Format("2006-01-02 15:04:05"),
+		TotalCount:  2,
+		TotalAmount: 400,
+		State:       0,
+		UserID:      1,
+	}
+	//创建订单项
+	orderItem := &model.OrderItem{
+		Count:   1,
+		Amount:  300,
+		Title:   "三国演义",
+		Author:  "罗贯中",
+		Price:   300,
+		ImgPath: "/static/img/default.jpg",
+		OrderID: orderID,
+	}
+	orderItem2 := &model.OrderItem{
+		Count:   1,
+		Amount:  100,
+		Title:   "西游记",
+		Author:  "吴承恩",
+		Price:   100,
+		ImgPath: "/static/img/default.jpg",
+		OrderID: orderID,
+	}
+	//保存订单
+	AddOrder(order)
+	//保存订单项
+	AddOrderItem(orderItem)
+	AddOrderItem(orderItem2)
 }
 
 func testDeleteCartItemByID(t *testing.T) {

@@ -34,6 +34,10 @@
             <th>详情</th>
             <th>发货</th>
         </tr>
+        <!--从Go文件传递过来的是Session-->
+        <!--遍历Session中的Orders后成为order结构体-->
+        <!--调用order结构体中的SendComplete(), NoSend(), Complete()方法-->
+        <!---->
         {{range .Orders}}
             <tr>
                 <td>{{.OrderID}}</td>
@@ -42,13 +46,13 @@
                 <td>{{.TotalAmount}}</td>
                 <td><a href="/getOrderInfo?orderId={{.OrderID}}">查看详情</a></td>
                 <td class="state">
-                    {{if .SendComplate}}
+                    {{if .SendComplete}}
                         <a href="/takeOrder?orderId={{.OrderID}}">确认收货</a>
                     {{end}}
                     {{if .NoSend}}
                         等待发货
                     {{end}}
-                    {{if .Complate}}
+                    {{if .Complete}}
                         交易完成
                     {{end}}
                 </td>
@@ -59,7 +63,7 @@
 
 <div id="bottom">
 		<span>
-			尚硅谷书城.Copyright &copy;2015
+			Golang
 		</span>
 </div>
 </body>

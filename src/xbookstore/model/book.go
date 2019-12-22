@@ -5,7 +5,7 @@ type Book struct {
 	Title   string
 	Author  string
 	Price   float64
-	Sales   int
+	Sales   int //销量
 	Stock   int //库存
 	ImgPath string
 	Ctime   string
