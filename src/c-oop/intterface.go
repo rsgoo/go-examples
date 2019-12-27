@@ -54,7 +54,7 @@ func (t *Tiger) Defend() {
 	fmt.Println("躺在地上举高高，我不是在卖萌，而是在防守")
 }
 func (t *Tiger) Run() {
-	fmt.Println("本王在奔跑")
+	fmt.Println(t.name, "-本王在奔跑")
 }
 
 func main() {
@@ -77,4 +77,5 @@ func main() {
 	fighter.Attack()
 	fighter.Defend()
 	beast.Run()
+	tiger.Run()
 }

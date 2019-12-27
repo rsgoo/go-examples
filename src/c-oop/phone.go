@@ -6,6 +6,7 @@ import (
 
 type Phone interface {
 	call()
+	sell()
 }
 
 type NokiaPhone struct {
@@ -17,6 +18,10 @@ func (nokiaPhone *NokiaPhone) call() {
 	fmt.Println("I am Nokia, I can call you!")
 }
 
+func (nokiaPhone *NokiaPhone) sell() {
+	fmt.Println("sell nokia")
+}
+
 type IPhone struct {
 	OS string
 }
@@ -26,13 +31,20 @@ func (iPhone *IPhone) call() {
 	fmt.Println("I am iPhone, I can call you!")
 }
 
-func main() {
-	var phone Phone
-	phone = &NokiaPhone{OS:"WP"}
-	phone.call()
+func (iPhone *IPhone) sell() {
+	fmt.Println("sell iPhone")
+}
 
-	phone = new(IPhone)
-	phone = &IPhone{OS:"iOS"}
-	phone.call()
+func main() {
+	var nokia Phone
+	var iPhone Phone
+
+	nokia = &NokiaPhone{OS: "WP"}
+	nokia.call()
+	nokia.sell()
+
+	iPhone = &IPhone{OS: "iOS"}
+	iPhone.call()
+	iPhone.sell()
 
 }

@@ -3,6 +3,8 @@ package dao
 import (
 	"xbookstore/model"
 	"xbookstore/utils"
+	"fmt"
+	"os"
 )
 
 //查询用户信息
@@ -52,4 +54,28 @@ func SaveUser(username, password, email string) error {
 		return err
 	}
 	return nil
+}
+
+func GetUserById(id int) {
+	sqlStr := "select * from users where id = ?";
+	stmt, err := utils.DB.Prepare(sqlStr)
+	defer stmt.Close()
+
+	if err != nil {
+		fmt.Println("err is :", err)
+	}
+
+	row := stmt.QueryRow(id)
+	var user = &model.User{}
+	row.Scan(
+		&user.ID,
+		&user.Username,
+		&user.Password,
+		&user.Email,
+		&user.Ctime,
+		&user.Mtime,
+	)
+	fmt.Println(user)
+	os.Exit(1)
+
 }

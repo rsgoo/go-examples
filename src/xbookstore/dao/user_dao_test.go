@@ -35,7 +35,12 @@ func TestBook(t *testing.T) {
 	//t.Run("测试获取订单", testGetOrderItemsByOrderId)
 	//t.Run("测试获取订单", testGetOrderItemsByOrderId)
 	//t.Run("测试获取订单", testGetMyOrders)
-	t.Run("测试订单状态更新", testUpdateOrderState)
+	//t.Run("测试订单状态更新", testUpdateOrderState)
+	t.Run("测试用户插入", testGetUserById)
+}
+
+func testGetUserById(t *testing.T) {
+	GetUserById(1)
 }
 
 func testUpdateOrderState(t *testing.T) {
