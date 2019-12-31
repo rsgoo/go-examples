@@ -1,10 +1,24 @@
 package main
 
 import (
+	"os"
 	"fmt"
-	"time"
 )
 
-func main()  {
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))  //2019-07-31 13:57:52
+func main() {
+	//tmp := [1]byte{}
+	s := make([]byte, 1024)
+	//n, err := os.Stdin.Read(tmp[:])
+	n, err := os.Stdin.Read(s)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(s))
+
+	fmt.Println(n)
+
+	v := struct{}{}
+
+	fmt.Printf("%T", v)
 }

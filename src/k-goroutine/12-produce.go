@@ -17,7 +17,11 @@ func main() {
 	go Produce(shopChan)
 	go Consume(countChan, shopChan)
 
-	for i := 0; i < 10; i++ {
+	//for i := 0; i < 10; i++ {
+	//	fmt.Println("从管道中读出：", <-countChan)
+	//}
+
+	for {
 		fmt.Println("从管道中读出：", <-countChan)
 	}
 	//close(shopChan)
@@ -25,7 +29,6 @@ func main() {
 
 	fmt.Println("main over")
 }
-
 
 //生产中 shopChan 只写管道
 func Produce(shopChan chan<- Product) {
