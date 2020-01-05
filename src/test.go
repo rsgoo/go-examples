@@ -1,24 +1,25 @@
 package main
 
-import (
-	"os"
-	"fmt"
-)
+import "fmt"
+
+type Base struct {
+}
+
+func (b *Base) Hello() {
+	fmt.Println("hello base")
+}
+
+type Middle struct {
+	Base
+}
+
+func (n *Middle) Hello() {
+	fmt.Println("hello middle")
+}
 
 func main() {
-	//tmp := [1]byte{}
-	s := make([]byte, 1024)
-	//n, err := os.Stdin.Read(tmp[:])
-	n, err := os.Stdin.Read(s)
-	if err != nil {
-		fmt.Println(err)
-		return
+	var s = &Middle{
+		Base{},
 	}
-	fmt.Println(string(s))
-
-	fmt.Println(n)
-
-	v := struct{}{}
-
-	fmt.Printf("%T", v)
+	s.Hello()
 }

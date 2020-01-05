@@ -1,7 +1,7 @@
 package model
 
 import (
-	"z-web/utils"
+	"w-web/utils"
 	"fmt"
 )
 

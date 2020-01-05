@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	"z-web/model"
+	"w-web/model"
 )
 
 func main() {
