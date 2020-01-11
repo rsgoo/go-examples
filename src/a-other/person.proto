@@ -1,0 +1,10 @@
+syntax = "proto2";
+//
+package person;
+
+message Person {
+    //1 代表字段顺序
+    required string Name = 1;
+    optional int64 Age = 2;
+    optional string From = 3;
+}

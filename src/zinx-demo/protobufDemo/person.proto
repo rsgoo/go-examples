@@ -1,0 +1,28 @@
+//语法声明,必须使用
+syntax = "proto3";
+
+//生成go文件的包名称
+package pb;
+
+//message 是关键字
+message Person {
+    string name = 1;
+    int32 age = 2;
+
+    //repeated表示
+    repeated string emails = 3;
+    repeated PhoneNumber phones = 4;
+}
+
+//枚举类型
+enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+}
+
+//为Person 的使用定义类型
+message PhoneNumber {
+    string numer = 1;
+    PhoneType type = 2;
+}
