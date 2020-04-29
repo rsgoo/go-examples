@@ -8,18 +8,19 @@ import (
 )
 
 func main() {
-	result := RedBonusDispatch(100, 3)
+	result := RedBonusDispatch(100, 40, 3)
 	fmt.Println(result)
 }
 
 //红包分配算法
 //totalMoney float64 红包总额
+//base float64 单个红包最小基准分配金额
 //n int 红包个数
-func RedBonusDispatch(totalMoney float64, n int) []float64 {
+func RedBonusDispatch(totalMoney float64, base float64, n int) []float64 {
 	rand.Seed(time.Now().UnixNano())
 
-	//单个红包基准金额
-	var base = 30.01
+	//单个红包最小基准分配金额
+	//var base = 0.01
 
 	//基准总额
 	baseTotal := base * float64(n)
@@ -62,6 +63,10 @@ func RedBonusDispatch(totalMoney float64, n int) []float64 {
 	for _, i2 := range remainItemMoney {
 		sum += i2
 	}
+
+	fmt.Println("金额总数 :", totalMoney)
+	fmt.Println("红包个数 :", n)
+
 	return remainItemMoney
 
 }

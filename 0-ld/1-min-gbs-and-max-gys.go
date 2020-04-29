@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+//最大公约数和最小公倍数获取
 func main() {
 	fmt.Println(getMinGBS(10, 15))
 	fmt.Println(getMinGBSForce(10, 15))
