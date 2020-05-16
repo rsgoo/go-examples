@@ -52,6 +52,7 @@ func getMinGBS(a, b int) int {
 	}
 }
 
+//暴力法求解最小公倍数
 func getMinGBSForce(a, b int) int {
 	if a == 0 || b == 0 {
 		return -1

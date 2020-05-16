@@ -45,7 +45,7 @@ func twoSumTargetWithSort(arr []int, target int) [][]int {
 	return posArr
 }
 
-//暴力求解
+//暴力求解-无需排序，直接遍历
 func twoSumWithForce(nums []int, target int) []int {
 	targetSumIndexArr := []int{}
 	for i := 0; i < len(nums); i++ {
@@ -61,6 +61,7 @@ func twoSumWithForce(nums []int, target int) []int {
 }
 
 //使用map
+//range 后的
 func twoSumWithMap(nums []int, target int) []int {
 	result := []int{}
 	maps := make(map[int]int)
