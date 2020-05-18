@@ -7,7 +7,7 @@ type ListNode234 struct {
 	Next *ListNode234
 }
 
-//todo 待验证
+//判断是否是回文链表
 func main() {
 	testListNode := &ListNode234{
 		Val: 1,
@@ -22,10 +22,10 @@ func main() {
 			},
 		},
 	}
-	fmt.Println(isPalindrome(testListNode))
+	fmt.Println(isPalindromeList(testListNode))
 }
 
-func isPalindrome(head *ListNode234) bool {
+func isPalindromeList(head *ListNode234) bool {
 	//一开始以为是数组或字符串，直接想的对撞指针，才发现是链表，那感觉可以先把链表里的值遍历到数组里，再用双指针
 	//但是我感觉用栈会更好？
 	array := []int{}
@@ -49,7 +49,6 @@ func isPalindrome(head *ListNode234) bool {
 		if array[left] == array[right] {
 			left++
 			right--
-			continue
 		} else {
 			return false
 		}

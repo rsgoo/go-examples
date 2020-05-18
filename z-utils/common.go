@@ -1,13 +1,13 @@
 package z_utils
 
-func getMaxVal(a, b int) int {
+func GetMaxVal(a, b int) int {
 	if a >= b {
 		return a
 	}
 	return b
 }
 
-func getMinVal(a, b int) int {
+func GetMinVal(a, b int) int {
 	if a <= b {
 		return a
 	}
