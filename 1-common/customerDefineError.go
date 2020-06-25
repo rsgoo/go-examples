@@ -16,6 +16,7 @@ func NewParseError(fileName string, line int) *parseError {
 	return &parseError{FileName: fileName, Line: line}
 }
 
+//自定义错误及简单使用
 func main() {
 	var e error
 	e = NewParseError("node.go", 1)
