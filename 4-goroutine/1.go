@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 )
 
 func main() {
@@ -18,10 +17,10 @@ func main() {
 
 	for i := 10; i < 20; i++ {
 		fmt.Println("主线程打印：", i)
-		time.Sleep(time.Second * 1)
+		//time.Sleep(time.Second * 1)
 	}
 
-	time.Sleep(time.Second * 1)
+	//time.Sleep(time.Second * 1)
 }
 
 func Greeting()  {
