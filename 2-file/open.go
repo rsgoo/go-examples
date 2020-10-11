@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	file, err := os.Open("C:\\gitNote\\Go-tour\\src\\2-file\\access.log")
+	file, err := os.Open("C:\\gitNote\\Go-tour-book\\src\\2-file\\access.log")
 	if err != nil {
 		fmt.Println("err is: ", err)
 		return
