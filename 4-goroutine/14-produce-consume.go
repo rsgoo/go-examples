@@ -1,9 +1,9 @@
 package main
 
 import (
-	"time"
-	"strconv"
 	"fmt"
+	"strconv"
+	"time"
 )
 
 //1: 生产者每一秒生产一个商品，并通知物流取货
@@ -34,7 +34,7 @@ func main() {
 	}
 }
 
-//生产者,只写
+// Producer 生产者,只写
 func Producer(storageChan chan<- Goods) {
 	for {
 		name := time.Now().Second()
@@ -45,7 +45,9 @@ func Producer(storageChan chan<- Goods) {
 	}
 }
 
-//物流
+// Logistics 物流
+// storageChan 只读chan
+// shopChan 只写chan
 func Logistics(storageChan <-chan Goods, shopChan chan<- Goods) {
 	for {
 		p := <-storageChan
@@ -54,15 +56,15 @@ func Logistics(storageChan <-chan Goods, shopChan chan<- Goods) {
 	}
 }
 
-//消费者
+// Consumer 消费者
 func Consumer(shopChan <-chan Goods) {
-	consumeCount := 0;
+	consumeCount := 0
 	for {
 		consumeCount++
 		p := <-shopChan
 		fmt.Println("consumer ", p)
 		if consumeCount > 10 {
-			break;
+			break
 		}
 	}
 	//用于通知主协程

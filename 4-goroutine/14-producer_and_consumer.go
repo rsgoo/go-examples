@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func producer(sendChan chan<- int) {
+func producerProcess(sendChan chan<- int) {
 	for i := 0; i < 10; i++ {
 		sendChan <- i
 	}
@@ -17,6 +17,6 @@ func consumer(receiveChan <-chan int) {
 
 func main() {
 	channel := make(chan int)
-	go producer(channel)
+	go producerProcess(channel)
 	consumer(channel)
 }
